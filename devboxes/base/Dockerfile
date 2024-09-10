@@ -15,9 +15,11 @@ RUN curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/function
 RUN fish -c 'source /tmp/fisher.fish && fisher install jorgebucaran/fisher && fisher install IlanCosman/tide@v6'
 
 USER root
-RUN echo "Welcome to the container! Enjoy your session." > /etc/motd
 
 RUN dnf install -y bat difftastic neovim
+
+COPY ./files/motd /etc/motd
+COPY ./files/fish.config /home/guest/.config/fish/config.fish
 
 EXPOSE 22
 
