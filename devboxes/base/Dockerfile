@@ -21,6 +21,12 @@ RUN dnf install -y bat difftastic neovim
 COPY ./files/motd /etc/motd
 COPY ./files/fish.config /home/guest/.config/fish/config.fish
 
+USER guest
+RUN git clone https://github.com/xpakx/dotfiles --depth=1 /home/guest/dotfiles
+RUN ln -s /home/guest/dotfiles/nvim /home/guest/.config/nvim
+RUN rm /home/guest/dotfiles/nvim/lua/plugins/{lsp-zero,mason,mason-lspconfig}.lua
+
+USER root
 EXPOSE 22
 
 CMD ["/usr/sbin/sshd", "-D", "-e"]
