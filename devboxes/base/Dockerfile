@@ -18,7 +18,7 @@ RUN fish -c "tide configure --auto --style=Rainbow --prompt_colors='True color' 
 
 USER root
 
-RUN dnf install -y bat difftastic neovim
+RUN dnf install -y bat difftastic neovim ripgrep
 
 COPY ./files/motd /etc/motd
 COPY ./files/fish.config /home/guest/.config/fish/config.fish
