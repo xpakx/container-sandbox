@@ -1,4 +1,4 @@
-FROM fedora:39
+FROM fedora:40
 
 # Install SSH, shell, git and some utilities
 RUN dnf install -y openssh-server passwd curl wget git fish which
