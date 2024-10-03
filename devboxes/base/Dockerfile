@@ -7,6 +7,7 @@ RUN ssh-keygen -A
 
 RUN useradd -m -s /bin/bash guest
 RUN echo "guest:password" | chpasswd
+RUN usermod -aG wheel guest
 
 # configure fish
 RUN chsh -s $(which fish) guest
