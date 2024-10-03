@@ -1,0 +1,19 @@
+FROM localhost/devbox
+
+# Install zig and xz (needed for extracting language server with mason)
+RUN dnf install -y zig xz
+
+USER guest
+
+# Add language servers configuration for neovim
+COPY ./files/lsp.lua /home/guest/dotfiles/nvim/lua/plugins/lsp.lua
+COPY ./files/fish.config /home/guest/.config/fish/config.fish
+
+USER root
+
+# clean
+RUN dnf clean all
+
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D", "-e"]
