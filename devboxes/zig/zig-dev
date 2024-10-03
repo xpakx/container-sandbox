@@ -1,0 +1,3 @@
+#!/usr/bin/env fish
+
+podman run -it -d -p 8000:22 -v $(pwd):/home/guest/$(basename $(pwd)):z --userns=keep-id devbox-zig
